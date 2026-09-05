@@ -165,8 +165,8 @@ Populate the `.env` values:
 ```env
 # Application
 NODE_ENV=development
-PORT=4000
-FRONTEND_URL=http://localhost:3000
+PORT=3000
+FRONTEND_URL=http://localhost:3001
 
 # Database & Cache
 DATABASE_URL=postgresql://reachinbox:reachinbox_pass@localhost:5432/reachinbox
@@ -203,17 +203,17 @@ MAX_EMAILS_PER_HOUR_PER_SENDER=200
 
 1. Navigate to the [Google Cloud Console Credentials](https://console.cloud.google.com/apis/credentials).
 2. Create an **OAuth 2.0 Client ID** (Application type: *Web application*).
-3. Set **Authorized JavaScript origins**: `http://localhost:3000`, `http://localhost:4000`.
-4. Set **Authorized redirect URIs**: `http://localhost:4000/api/auth/google/callback`.
+3. Set **Authorized JavaScript origins**: `http://localhost:3001`.
+4. Set **Authorized redirect URIs**: `http://localhost:3000/api/auth/google/callback`.
 5. Copy the generated **Client ID** and **Client Secret** into `.env`.
 
 ---
 
 ## 9. Slack OAuth & Notification Setup
 
-1. Create an app in [Slack API Portal](https://api.slack.com/apps).
-2. Under **OAuth & Permissions**, add Redirect URL: `http://localhost:4000/api/slack/callback`.
-3. Add User Scopes: `chat:write`, `channels:read`, `users:read`.
+1. Create an app in the Slack API Portal.
+2. Under **OAuth & Permissions**, add Redirect URL: `http://localhost:3000/api/slack/callback`.
+3. Add the Bot Token Scope: `chat:write`.
 4. Copy **Client ID** and **Client Secret** into `.env`.
 
 ---
@@ -259,7 +259,7 @@ npm run dev:frontend
 ```bash
 cd apps/backend
 npm run dev
-# Running at http://localhost:4000
+# Running at http://localhost:3000
 ```
 
 **Terminal 2 (BullMQ Worker):**
@@ -273,15 +273,14 @@ npm run worker
 ```bash
 cd apps/frontend
 npm run dev
-# Running at http://localhost:3000
+# Running at http://localhost:3001
 ```
 
 ---
 
 ## 13. Queue Dashboard (Bull Board)
 
-Visit the live BullMQ monitoring dashboard:
-**`http://localhost:4000/admin/queues`**
+Visit the live BullMQ monitoring dashboard: **`http://localhost:3000/admin/queues`**
 
 Inspect:
 - **Delayed Jobs**: Scheduled emails awaiting their exact execution timestamp
@@ -392,7 +391,7 @@ Tests cover:
 
 ## 17. Step-by-Step Demo Verification Flow
 
-1. **Login**: Navigate to `http://localhost:3000`. Click **Login with Google**.
+1. **Login**: Navigate to `http://localhost:3001`. Click **Login with Google**.
 2. **Dashboard**: Verify the sidebar displays your Google avatar, name, and email.
 3. **Compose**: Click **Compose** in the sidebar.
 4. **Recipients & CSV Upload**:

@@ -13,8 +13,8 @@ console.log(
 
 export const elasticClient = new Client({
   node: env.ELASTICSEARCH_URL,
-  auth: {
-    apiKey: env.ELASTICSEARCH_API_KEY,
+  headers: {
+    Authorization: `ApiKey ${env.ELASTICSEARCH_API_KEY}`,
   },
 });
 export const checkElasticConnection = async () => {
